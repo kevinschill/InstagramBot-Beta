@@ -67,5 +67,4 @@ bot_loop_thread = threading.Thread(target=MainLoop)
 
 bot_loop_thread.start()
 
-
 gui.start_gui()
