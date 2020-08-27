@@ -14,7 +14,7 @@ from ConfigLoader import ConfigLoader
 
 from tkinter.font import Font
 import webbrowser
-
+import json
 class MainGui():
     def __init__(self,BotHandle=None):
         super().__init__()
@@ -76,6 +76,14 @@ class MainGui():
         os._exit(1)
 
     def AccountLogin(self):
+        with open("settings.json") as oldfile:
+                data = json.load(oldfile)
+                
+        data["username"] = self.account_tab.getUsername()
+        data["password"] = self.account_tab.getPassword()
+          
+        with open("settings.json", "w+") as newfile:
+            json.dump(data, newfile, indent=4)
         self.botHandle.Login()
     
     def AccountStartBot(self):

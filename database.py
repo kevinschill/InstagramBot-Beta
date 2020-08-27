@@ -69,11 +69,21 @@ class Datenbank():
             return data
         else:
             return False
-
+    def get_all_following(self):
+        self.handle.execute("SELECT url,timestamp FROM following")
+        data = self.handle.fetchall()
+        if data != None:
+            return data
+        elif data == None:
+            return False
+        #list_= [list[0] for list in self.handle.fetchall()]
+        #return list_
     def find_following(self,url_):
         self.handle.execute("SELECT url,timestamp FROM following WHERE url=?",(url_,))
         if self.handle.fetchone() != None:
             return True
+        else:
+            return False
             
     def delete_following(self,url_):
         self.handle.execute("DELETE FROM following WHERE url=?",(url_,))

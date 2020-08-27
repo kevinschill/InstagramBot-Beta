@@ -36,7 +36,7 @@ class SettingsTab():
     def save_settings(self):
         with open("settings.json") as oldfile:
                 data = json.load(oldfile)
-
+                
         data["likestoday"] = self.like_settings.getMaxLikesToday()
         data["commentstoday"] = self.comment_settings.getMaxCommentsToday()
         data["sleeplike"] = self.like_settings.getLikeSleepText()

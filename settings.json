@@ -8,5 +8,5 @@
     "sleepfollow": "10,22",
     "sleepacceptfollower": "22,20",
     "sleepcommentmyfeed": "22,20",
-    "unfollowtimer": "500"
+    "unfollowtimer": 400
 }

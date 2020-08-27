@@ -31,7 +31,7 @@ class UnfollowSettings():
         return True if self.unfollow_users_status.get() == 1 else False
         
     def getUnfollowMinutes(self):
-        return self.unfollow_time.get()
+        return int(self.unfollow_time.get())
 
     def setUnfollowMinutes(self,sleepstring):
         self.unfollow_time.insert(0,sleepstring)

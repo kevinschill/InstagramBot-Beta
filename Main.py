@@ -42,14 +42,26 @@ def MainLoop():
 
                                         sleep_from,sleep_to = gui.settings_tab.comment_settings.getCommentSleepReal()
                                         time.sleep(random.randint(sleep_from,sleep_to))
+                                    
+                                    if gui.settings_tab.follow_settings.getFollowStatus() == True:
+                                        bot.follow_user()
+                                        
+                                        bot.guiHandle.stats_tab.setFollowedStats(bot.followed_count)
+
+                                        sleep_from,sleep_to = gui.settings_tab.follow_settings.getFollowSleepReal()
+                                        time.sleep(random.randint(sleep_from,sleep_to))
+
                                 elif bot.temp_banned == True:
                                     gui.temp_ban_text.configure(text="Temp Ban: True, waiting 10 Minutes",font=Font(family="Consolas", size=14, weight="normal"))
-                                    gui.temp_ban_text.place(x=110,y=280)
+                                    gui.temp_ban_text.place(x=80,y=280)
                                     gui.log_tab.writeLog("We are Temp Banned... wait 10 Minutes....")
                                     time.sleep(600)
                                     bot.temp_banned = False
                                     gui.temp_ban_text.configure(text="Temp Ban: False",font=Font(family="Consolas", size=11, weight="normal"))
                                     gui.temp_ban_text.place(x=150,y=280)
+                if gui.settings_tab.unfollow_settings.getUnfollowStatus() == True:
+                    if bot.temp_banned == False:
+                        bot.unfollow_user()
 
 bot_loop_thread = threading.Thread(target=MainLoop)
 
