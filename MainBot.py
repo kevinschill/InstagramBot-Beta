@@ -87,7 +87,7 @@ class MainBot():
         
         opts = selenium.webdriver.chrome.options.Options()
         opts.add_argument('--disable-infobars')
-       # opts.add_argument('--headless')
+        opts.add_argument('--headless')
         opts.add_argument('--no-sandbox')
         opts.add_argument('--disable-gpu')
 
