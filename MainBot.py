@@ -301,10 +301,22 @@ class MainBot():
                                 unfollow_button_two = self.WaitForObjectNoLog(By.CLASS_NAME,"aOOlW.-Cab_")
                                 if unfollow_button_two != False:
                                     if self.ClickObject(unfollow_button_two) == True:
-                                        self.Log("Unfollowed Profile....")
-                                        self.unfollowed_counter += 1
-                                        self.guiHandle.stats_tab.setUnfollowedStats(self.unfollowed_counter)
-                                        self.database.delete_following(profile)
+                                        is_unfollowed = False
+                                        if self.isProfilePrivate() == True:
+                                            follow_private_button = self.WaitForObject(By.CLASS_NAME, "sqdOP.L3NKy.y3zKF","Follow Private - button")
+                                            if follow_private_button != False:
+                                                is_unfollowed = True
+                                        else:
+                                            follow_public_button = self.WaitForObject(By.CLASS_NAME, "_5f5mN.jIbKX._6VtSN.yZn4P","Follow Public - button")
+                                            
+                                            if follow_public_button != False:
+                                                is_unfollowed = True
+                                        
+                                        if is_unfollowed == True:
+                                            self.Log("Unfollowed Profile....")
+                                            self.unfollowed_counter += 1
+                                            self.guiHandle.stats_tab.setUnfollowedStats(self.unfollowed_counter)
+                                            self.database.delete_following(profile)
 
                 time.sleep(5)
                                 

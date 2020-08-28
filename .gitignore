@@ -7,3 +7,4 @@ dist
 env
 build
 Main.spec
+datenbank.db
