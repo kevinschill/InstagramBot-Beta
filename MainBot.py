@@ -207,7 +207,14 @@ class MainBot():
                         commentbox = self.WaitForObject(By.CLASS_NAME, "Ypffh","writeComment-2")
                         if commentbox != False:
                             commentbox.clear()
-                            commentbox.send_keys(random.choice(self.database.getComments()))
+                            #commentbox.send_keys(random.choice(self.database.getComments()))
+                            JS_ADD_TEXT_TO_INPUT = """
+                            var elm = arguments[0], txt = arguments[1];
+                            elm.value += txt;
+                            elm.dispatchEvent(new Event('change'));
+                            """
+                            self.browser.execute_script(JS_ADD_TEXT_TO_INPUT, commentbox, random.choice(self.database.getComments()))
+                            commentbox.send_keys(' ')
                             comment_button_x = self.WaitForObjects(By.CLASS_NAME,"sqdOP.yWX7d.y3zKF","writeComment-button")
                             for button in comment_button_x:
                                 try:
@@ -319,7 +326,9 @@ class MainBot():
                                             self.database.delete_following(profile)
 
                 time.sleep(5)
-                                
+
+    def AcceptFollowers(self):
+        self.browser.get("https://www.instagram.com/accounts/activity/?followRequests")                           
 
 
 
