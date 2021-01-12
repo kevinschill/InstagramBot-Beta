@@ -105,7 +105,12 @@ class MainBot():
 
         self.Log("Open Login Page")
         self.browser.get("https://www.instagram.com/accounts/login")
+        cookies_accept_button = self.WaitForObject(
+            By.CLASS_NAME, "aOOlW.bIiDR","CookieButton")
 
+        if cookies_accept_button != False:
+            cookies_accept_button.click()
+            
         login_objects = self.WaitForObjects(
             By.CSS_SELECTOR, "input._2hvTZ.pexuQ.zyHYP","Login")
         if login_objects != False:
